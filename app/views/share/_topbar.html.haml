@@ -1,0 +1,8 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      = link_to "小兜蟲詞庫", root_url, :class=>"brand"
+      %ul.nav
+        =nav_li "首頁", root_url
+        =nav_li "主題總攬", categories_path
+        =nav_li "關於小兜蟲", "#"

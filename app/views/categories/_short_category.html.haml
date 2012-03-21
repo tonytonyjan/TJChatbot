@@ -1,0 +1,20 @@
+.well.span5
+  %h2
+    = short_category.name
+    = link_to "編輯", edit_category_path(short_category), :class=>"btn btn-info"
+    = link_to "刪除", short_category, :method=>:delete, :class=>"btn btn-danger", :confirm=>"你知道你在做什麼？"
+  .row
+    .span2
+      %h3 表達式
+      %ol
+        - short_category.recent_patterns.each do |p|
+          %li
+            = p.content
+            %span.label= time_ago_in_words(p.updated_at, true)
+    .span3
+      %h3 回答
+      %ol
+        - short_category.recent_responses.each do |p|
+          %li
+            = p.content
+            %span.label= time_ago_in_words(p.updated_at, true)

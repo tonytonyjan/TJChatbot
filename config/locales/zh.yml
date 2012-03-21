@@ -1,0 +1,9 @@
+zh:
+  activerecord:
+    models:
+      category: 主題
+      pattern: 表達式
+      response: 回答
+    attributes:
+      category:
+        name: 標題

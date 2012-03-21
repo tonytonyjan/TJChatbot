@@ -1,0 +1,19 @@
+.hero-unit
+  %h1 小兜蟲詞庫系統 (Beta)
+  %br
+  %p 你可以自由新增小兜蟲說的詞彙，讓他越來越聰（ㄅㄞˊ）明（ㄇㄨˋ）！
+  %br
+  = form_tag "/search", :method=>:get, :class=>"form-search", :style=>"display:inline;" do
+    = text_field_tag :q, nil, :placeholder=>"尋找主題 ex. 問候", :class=>"input-xlarge search-query"
+    = submit_tag "搜尋", :class=>"btn"
+  或者
+  = link_to "新增主題", new_category_path, :class=>"btn btn-primary"
+.row
+  .span6
+    %h2 新主題
+    - @recent_created.each do |c|
+      .row= render :partial=>"categories/short_category", :object=>c
+  .span6
+    %h2 近期更新
+    - @recent_updated.each do |c|
+      .row= render :partial=>"categories/short_category", :object=>c

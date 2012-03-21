@@ -1,0 +1,56 @@
+- unless @category.errors.empty?
+  .alert.alert-error
+    %ul
+      - @category.errors.full_messages.each do |msg|
+        %li= msg
+= form_for @category do |f|
+  .row
+    .span12
+      = f.label :name, content_tag(:h2, "標題")
+      = f.text_field :name
+  .row
+    .span6
+      %h2 表達式
+      %ol
+        = f.fields_for :patterns do |pattern_form|
+          %li
+            = pattern_form.text_field :content, :class=>"input-xlarge"
+            - if action_name=="edit"
+              = pattern_form.check_box :_destroy, :class=>"checkbox"
+        %li
+          %span.new-field-btn.label.label-success + 新增
+    .span6
+      %h2 回答
+      %ol
+        = f.fields_for :responses do |response_form|
+          %li
+            = response_form.text_field :content, :class=>"input-xlarge"
+            - if action_name=="edit"
+              = response_form.check_box :_destroy
+        %li
+          %span.new-field-btn.label.label-success + 新增
+  = f.button "提交", :class=>"btn btn-primary"
+  - if action_name=="edit"
+    = f.button "復原", :type=>"reset" , :class=>"btn"
+    = link_to "刪除", @category, :method=>:delete, :class=>"btn btn-danger pull-right", :confirm=>"你知道你在做什麼？"  
+
+:javascript
+  $('.checkbox').tooltip({placement:"right", title:"刪除"})
+  // Disable enter key submission.
+  $('form').bind("keypress", function (e) {
+      if (e.keyCode == 13) return false;
+  });
+  // New field button
+  $('.new-field-btn').click(function(event){
+    li = $(this).closest('ol').find('li:nth-last-of-type(2)').clone();
+    // Keep only text field
+    li.find(':not(input[type=text])').remove();
+    // Set name and value of text input tag
+    text_field = li.find('input[type=text]')
+    new_name = text_field.attr('name').replace(/\[\d+\]/, "["+event.timeStamp+"]")
+    text_field.attr('name', new_name).removeAttr('value');
+    
+    console.info(li);
+    $(this).parent().before(li);
+  });
+  //s.replace(/\[\d\]/, "["+Date.now()+"]")
