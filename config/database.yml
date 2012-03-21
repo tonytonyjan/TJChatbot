@@ -22,10 +22,10 @@ test:
 
 production:
   adapter: mysql2
-  database: tonytonyjan_smalldo
-  user: tonytonyjan
-  password: tj781123
   host: cssula.nba.nctu.edu.tw
+  username: tonytonyjan
+  password: tj781123
+  database: tonytonyjan_smalldo
   encoding: utf8
   pool: 5
   timeout: 5000
