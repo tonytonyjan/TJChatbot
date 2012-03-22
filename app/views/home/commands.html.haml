@@ -1,0 +1,82 @@
+.page-header
+  %h1 小兜蟲指令大全
+.row
+  .span8
+    .page-header
+      %h2
+        Google Map
+        %small 回傳一個 Google Map 連結
+    %pre [小兜蟲|:]{地點}[怎麼走|怎麼去|在哪裡]
+    %h3 範例
+    %pre 小兜蟲，請問交大怎麼走
+    %pre :交大在哪裡
+    
+    .page-header
+      %h2
+        新聞
+        %small 從聯合新聞網擷取最新消息
+    %pre [小兜蟲|:][國內要聞|經濟產業|數位資訊|最新報導|兩岸國際|系內公告]
+    %h3 範例
+    %pre 小兜蟲 數位資訊
+    %pre : 最新報導
+    %p 註：系內公告指的是交大資工系內公告^^"
+    
+    .page-header
+      %h2
+        Youtube
+        %small 回傳在 Youtube 上找到的第一筆搜尋結果
+    %pre [小兜蟲|:]我想[聽|看|點]{歌曲}
+    %pre [小兜蟲|:]幫我點{歌曲}
+    %h3 範例
+    %pre 小兜蟲，幫我點交大人
+    %pre :我想聽旭陵子
+    %p 註：「我」可略
+    
+    .page-header
+      %h2
+        歐趴神算
+        %small 算算自己或朋友這學期歐啪的機率
+    %pre [小兜蟲|:]算算{名字}這學期如何
+    %h3 範例
+    %pre 小兜蟲，幫我算算大兜這學期如何？
+    %pre :算算大兜這學期？
+    
+    .page-header
+      %h2
+        擲骰子
+        %small 回傳一個 1 到 6 之間的整數
+    %pre [小兜蟲|:]擲骰子
+    %h3 範例
+    %pre 小兜蟲 擲骰子
+  .span4
+    %h2 小兜蟲檔案
+    %table.table.table-bordered.table-striped
+      %thead
+        %th 屬性
+        %th 資料
+      %tbody
+        %tr
+          %td
+            %b 噗浪帳號
+          %td= link_to "tonyjan", "http://www.plurk.com/tonyjan"
+        %tr
+          %td
+            %b 姓名
+          %td 小兜蟲
+        %tr
+          %td
+            %b 職業
+          %td 噗浪機器人
+        %tr
+          %td
+            %b 生日
+          %td 2011/3/24
+        %tr
+          %td
+            %b 專長
+          %td 吃到一半睡著
+        %tr
+          %td
+            %b 興趣
+          %td 發呆
+    

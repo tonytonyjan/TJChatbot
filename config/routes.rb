@@ -4,6 +4,7 @@ Chatbot::Application.routes.draw do
     resources :patterns
     resources :categories
     get :search, :to=>"home#search"
+    get :commands, :to=>"home#commands"
   end
   
   # The priority is based upon order of creation:
