@@ -1,30 +1,32 @@
-.hero-unit.span8
-  %h1
-    小兜蟲詞庫系統 
-    %small (Beta)
-  %br
-  %p 自由編輯小兜蟲的回話，讓他越來越聰（ㄅㄞˊ）明（ㄇㄨˋ）！
-  %br
-  /
-    = form_tag "/search", :method=>:get, :class=>"form-search", :style=>"display:inline;" do
-      = text_field_tag :q, nil, :placeholder=>"尋找主題 ", :class=>"input-xlarge search-query"
-      = submit_tag "搜尋", :class=>"btn"
-  .span3
-    %p
-      = link_to "瀏覽主題", categories_path, :class=>"btn btn-info btn-large"
-      看看別人寫了些什麼
-    %p
-      = link_to "新增主題", new_category_path, :class=>"btn btn-primary btn-large"
-      調教小兜蟲>///<
-  .span3
-    %p
-      = link_to "查閱指令", commands_path, :class=>"btn btn-success btn-large"
-      一探小兜蟲的功能
-    %p
-      = link_to "即時預覽", "#", :class=>"btn btn-warning btn-large", :id=>"coming-soon"
-      看看小兜蟲怎麼回你
-  %p= render "share/facebook_like_button"
-= render "share/plurk_widget"
+.row
+  .span9
+    .hero-unit
+      %h1
+        小兜蟲詞庫系統 
+        %small (Beta)
+      %br
+      %p 自由編輯小兜蟲的回話，讓他越來越聰（ㄅㄞˊ）明（ㄇㄨˋ）！
+      %br
+      /
+        = form_tag "/search", :method=>:get, :class=>"form-search", :style=>"display:inline;" do
+          = text_field_tag :q, nil, :placeholder=>"尋找主題 ", :class=>"input-xlarge search-query"
+          = submit_tag "搜尋", :class=>"btn"
+      .span3
+        %p
+          = link_to "瀏覽主題", categories_path, :class=>"btn btn-info btn-large"
+          看看別人寫了些什麼
+        %p
+          = link_to "新增主題", new_category_path, :class=>"btn btn-primary btn-large"
+          調教小兜蟲>///<
+      .span3
+        %p
+          = link_to "查閱指令", commands_path, :class=>"btn btn-success btn-large"
+          一探小兜蟲的功能
+        %p
+          = link_to "即時預覽", "#", :class=>"btn btn-warning btn-large", :id=>"coming-soon"
+          看看小兜蟲怎麼回你
+      %p= render "share/facebook_like_button"
+  .span2= render "share/plurk_widget"
 .row
   .span6
     %h2 新主題
