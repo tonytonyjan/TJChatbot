@@ -16,10 +16,10 @@ class Category < ActiveRecord::Base
   end
   
   def recent_patterns
-    patterns.sort_by(&:updated_at)
+    patterns.sort_by(&:updated_at).reverse
   end
   
   def recent_responses
-    responses.sort_by(&:updated_at)
+    responses.sort_by(&:updated_at).reverse
   end
 end

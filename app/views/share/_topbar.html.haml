@@ -5,4 +5,5 @@
       %ul.nav
         =nav_li "首頁", root_url
         =nav_li "主題總攬", categories_path
-        =nav_li "關於小兜蟲", "#"
+        =nav_li "關於小兜蟲", "#about", "data-toggle"=>"modal"
+= render "share/about_modal"
