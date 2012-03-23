@@ -9,7 +9,7 @@
       .well
         %h2 溫馨提醒
         :markdown
-          *   新增主題之前，建議先檢查是否已經有人開過類似意義的主題了，有則沿用，以免重創主題。
+          *   新增主題之前，建議先[預覽](/search)是否已經有人開過類似意義的主題了，有則沿用，以免重創主題。
           
           *   你所做的更動除非系統當機，否則一分鐘內就會生效。
 
@@ -18,6 +18,7 @@
           *   你可以選擇僅輸入一般文字或者使用正規表達式，如果要使用後者，非常建議使用[此網站](http://rubular.com)檢測你的正規表達式是否正確。
       = f.label :name, content_tag(:h2, "標題")
       = f.text_field :name
+      %span#check_name
       .row
         .span4
           %h2 聽見（支援正規表達式）
@@ -46,7 +47,30 @@
     = f.button "復原", :type=>"reset" , :class=>"btn btn-large"
     = link_to "刪除", @category, :method=>:delete, :class=>"btn btn-danger pull-right", :confirm=>"你知道你在做什麼？"  
 
+- if action_name=="new"
+  :javascript
+    // Check title when focusout
+    $('#category_name').focusout(function(e){
+      console.info(this);
+      request = $.ajax({
+        url:"/search",
+        dataType: "json",
+        data:{
+          q:this.value,
+          t:true
+        }
+      });
+      request.done(function(msg){
+        if(msg instanceof Array && msg.length>0){
+          $('#check_name').html('發現<span class="badge badge-error">'+msg.length+'</span>筆相似主題');
+        }else{
+          $('#check_name').html('');
+        }
+      });
+    });
+
 :javascript
+  // Tooltips for checkbox
   $('.checkbox').tooltip({placement:"right", title:"刪除"})
   // Disable enter key submission.
   $('form').bind("keypress", function (e) {

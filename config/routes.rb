@@ -1,11 +1,10 @@
 Chatbot::Application.routes.draw do
-  scope :format=>false do
-    resources :responses
-    resources :patterns
-    resources :categories
-    get :search, :to=>"home#search"
-    get :commands, :to=>"home#commands"
-  end
+  
+  resources :responses
+  resources :patterns
+  resources :categories
+  get :search, :to=>"home#search"
+  get :commands, :to=>"home#commands"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

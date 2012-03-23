@@ -13,5 +13,9 @@ class HomeController < ApplicationController
     elsif params[:q]
       flash[:error] = "你沒有輸入任何東西！"
     end
+    respond_to do |format|
+      format.html
+      format.json{render :json=>@categories}
+    end
   end
 end
