@@ -6,7 +6,12 @@ class HomeController < ApplicationController
   end
   
   def search
-    @categories = Category.search(params[:q])
-    render "categories/index"
+    if params[:q].present?
+      @categories = []
+      @categories |= Category.search_by_pattern(params[:q]) if params[:p]
+      @categories |= Category.search_by_title(params[:q]) if params[:t]
+    else
+      flash[:error] = "你沒有輸入任何東西！"
+    end
   end
 end

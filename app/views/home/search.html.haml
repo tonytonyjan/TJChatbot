@@ -1,0 +1,21 @@
+.hero-unit
+  %h1
+    即時預覽
+    %small 你發噗，我回噗
+  %br
+  = form_tag search_path, :method=>:get, :class=>"form-search", :style=>"display:inline;" do
+    = text_field_tag :q, nil, :placeholder=>"ex. 早安", :required=>true, :class=>"input-xxlarge search-query"
+    = hidden_field_tag :p
+    = submit_tag "發噗", :class=>"btn btn-warning btn-large"
+    %br
+    = label_tag :t, check_box_tag(:t)+"同時搜主題", :class=>"checkbox"
+.row
+  .span12
+    - if @categories.present?
+      = render "categories/two_columns_categoryes"
+    - elsif params[:q].present?
+      .row
+        .offset3.span6
+          %h2
+            恭喜！你挖到小兜蟲尚未被開發的領域！
+            = link_to "我要貢獻", new_category_path, :class=>"btn btn-primary btn-large"

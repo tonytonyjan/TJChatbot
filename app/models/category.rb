@@ -6,13 +6,31 @@ class Category < ActiveRecord::Base
   
   validates :name, :presence=>true, :uniqueness=>true
   
+  # Search categories' title
+  def self.search_by_title query
+    Category.all :conditions=>["name LIKE ?", "%"+query+"%"]
+  end
   
-  def self.search query=nil
-    if query.present?
-      all :conditions=>["name LIKE '%?%'", query.force_encoding("UTF-8")]
-    else
-      all
-    end
+  # Search categories that can accept the query.
+  def self.search_by_pattern query
+    cats = []
+    Category.all.each{|cat|
+      cats << cat if cat.match?(query)
+    }
+    return cats
+  end
+  
+  # Check if the given string can be accepted by this category.
+  def match? string
+    match = false
+    patterns.each{|p|
+      p string, p, "==="
+      if string =~ Regexp.new(p.content)
+        match = true
+        break
+      end
+    }
+    return match
   end
   
   def recent_patterns
