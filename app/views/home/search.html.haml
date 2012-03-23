@@ -4,7 +4,7 @@
     %small 你發噗，我回噗
   %br
   = form_tag search_path, :method=>:get, :class=>"form-search", :style=>"display:inline;" do
-    = text_field_tag :q, nil, :placeholder=>"ex. 早安", :required=>true, :class=>"input-xxlarge search-query"
+    = text_field_tag :q, nil, :placeholder=>"ex. 早安", :required=>true, :class=>"input-xxlarge search-query", :value=>@q
     = hidden_field_tag :p
     = submit_tag "發噗", :class=>"btn btn-warning btn-large"
     %br

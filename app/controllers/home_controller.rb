@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   
   def search
     if params[:q].present?
+      @q = params[:q]
       @categories = []
       @categories |= Category.search_by_pattern(params[:q]) if params[:p]
       @categories |= Category.search_by_title(params[:q]) if params[:t]
