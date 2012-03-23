@@ -13,7 +13,7 @@ class HomeController < ApplicationController
       @categories |= Category.search_by_title(params[:q]) if params[:t]
     end
     respond_to do |format|
-      format.html{flash[:error] = "你沒有輸入任何東西！" if params[:q]}
+      format.html{flash[:error] = "你沒有輸入任何東西！" unless params[:q].present?}
       format.json{render :json=>@categories}
     end
   end
