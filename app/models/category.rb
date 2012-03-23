@@ -5,6 +5,15 @@ class Category < ActiveRecord::Base
   accepts_nested_attributes_for :patterns, :responses, :reject_if=>proc { |attributes| attributes[:content].blank? }, :allow_destroy=>true
   
   validates :name, :presence=>true, :uniqueness=>true
+  validate :pattern_fields_cannot_be_blank, :response_fields_cannot_be_blank
+  
+  def pattern_fields_cannot_be_blank
+    errors.add(:pattern, "fields can't be blank") if self.patterns.blank?
+  end
+  
+  def response_fields_cannot_be_blank
+    errors.add(:response, "fields can't be blank") if self.responses.blank?
+  end
   
   # Search categories' title
   def self.search_by_title query
