@@ -9,10 +9,10 @@
     .span2
       %h3 聽見
       %ol
-        - short_category.recent_patterns.each do |p|
+        - short_category.patterns.each do |p|
           %li= p.content
     .span3
       %h3 回答
       %ol
-        - short_category.recent_responses.each do |p|
+        - short_category.responses.each do |p|
           %li= p.content

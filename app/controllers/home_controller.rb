@@ -6,7 +6,6 @@ class HomeController < ApplicationController
   end
   
   def search
-    p "============="
     if params[:q].present?
       @q = params[:q]
       @categories = []
