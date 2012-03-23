@@ -2,7 +2,7 @@
 class HomeController < ApplicationController
   def index
     @recent_created = Category.order('created_at desc').first(5)
-    @recent_updated = Category.order('updated_at desc').first(5)
+    @recent_updated = Category.where("created_at!=updated_at").order('updated_at desc').first(5)
   end
   
   def search
