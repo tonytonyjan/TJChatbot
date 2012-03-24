@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   
   private
   def init
-    @info = JSON.parse(user_info)
+    @info = JSON.parse(user_info) if user_info
   end
 end
