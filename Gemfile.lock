@@ -55,6 +55,7 @@ GEM
     mime-types (1.17.2)
     multi_json (1.1.0)
     mysql2 (0.3.11-x86-mingw32)
+    oauth (0.4.5)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -110,6 +111,7 @@ DEPENDENCIES
   haml
   jquery-rails
   mysql2
+  oauth
   rails (= 3.2.2)
   rdiscount
   sass-rails (~> 3.2.3)

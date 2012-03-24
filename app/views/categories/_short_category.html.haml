@@ -1,18 +1,19 @@
-.well.span5
-  %h2
-    = short_category.name
-    %small= time_ago_in_words(short_category.updated_at, true)
-    /= link_to "刪除", short_category, :method=>:delete, :class=>"btn btn-danger pull-right", :confirm=>"你知道你在做什麼？"
-    = link_to "編輯", edit_category_path(short_category), :class=>"btn btn-large pull-right"
-    
-  .row
-    .span2
-      %h3 聽見
-      %ol
-        - short_category.patterns.each do |p|
-          %li= p.content
-    .span3
-      %h3 回答
-      %ol
-        - short_category.responses.each do |p|
-          %li= p.content
+.span6
+  .well(style="overflow:auto;")
+    %h2
+      = short_category.name
+      %small= time_ago_in_words(short_category.updated_at, true)
+      /= link_to "刪除", short_category, :method=>:delete, :class=>"btn btn-danger pull-right", :confirm=>"你知道你在做什麼？"
+      = link_to "編輯", edit_category_path(short_category), :class=>"btn btn-large pull-right"
+      
+    .row
+      .span2
+        %h3 聽見
+        %ol
+          - short_category.patterns.each do |p|
+            %li= p.content
+      .span3
+        %h3 回答
+        %ol
+          - short_category.responses.each do |p|
+            %li= p.content
