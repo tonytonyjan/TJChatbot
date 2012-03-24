@@ -1,10 +1,17 @@
 Chatbot::Application.routes.draw do
-  
+
+  resources :users
+
   resources :responses
   resources :patterns
   resources :categories
   get :search, :to=>"home#search"
   get :commands, :to=>"home#commands"
+  
+  # Plurk oauth
+  get "sign_in" => "sessions#sign_in"
+  get "sign_out" => "sessions#sign_out"
+  get "sign_in_callback" => "sessions#sign_in_callback"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

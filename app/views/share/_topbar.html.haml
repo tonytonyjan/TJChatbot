@@ -3,11 +3,19 @@
     .container
       = link_to "小兜蟲", root_url, :class=>"brand"
       %ul.nav
-        =nav_li "首頁", root_url
-        =nav_li "主題總攬", categories_path
-        =nav_li "即時預覽", search_path
-        =nav_li "指令集", commands_path
-        =nav_li "關於", "#about", "data-toggle"=>"modal"
+        = nav_li "主題總攬", categories_path
+        = nav_li "即時預覽", search_path
+        = nav_li "指令集", commands_path
+        = nav_li "關於", "#about", "data-toggle"=>"modal"
       %ul.nav.pull-right
-        =nav_li "用噗浪登入", "#"
+        - unless signed_in?
+          = nav_li "用噗浪登入", sign_in_path
+        - else
+          = nav_li image_tag(current_user.avatar), "javascript:void(0)"
+          %li.dropdown
+            %a.dropdown-toggle(href="#" data-toggle="dropdown")
+              = current_user.info["display_name"]
+              %b.caret
+            %ul.dropdown-menu
+              = nav_li "登出", sign_out_path
 = render "share/about_modal"
