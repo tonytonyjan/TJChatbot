@@ -41,7 +41,6 @@ class SessionsController < ApplicationController
     
     redirect_to root_url
   rescue => e
-    p e
     redirect_to sign_in_url
   end
 end

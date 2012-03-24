@@ -1,4 +1,4 @@
 class Response < ActiveRecord::Base
   belongs_to :category, :touch=>true
-  validates :content, :presence=>true, :uniqueness=>true
+  validates :content, :presence=>true, :uniqueness=>{:scope=>:category_id}
 end
