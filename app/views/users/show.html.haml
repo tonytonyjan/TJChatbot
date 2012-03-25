@@ -19,6 +19,7 @@
         或
         - placeholder = current_user==@user ? "輸入好友帳號，給他驚喜 XD" : "尋找其他好友"
         = text_field_tag :plurk_id, nil, :placeholder=>placeholder, :class=>"input-large search-query"
+      %small 注意：對象與小兜蟲必須為好友才會生效！
 
 = render "categories/two_columns_categoryes"
 
