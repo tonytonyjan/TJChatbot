@@ -1,12 +1,14 @@
 Chatbot::Application.routes.draw do
-
-  resources :users
-
   resources :responses
   resources :patterns
   resources :categories
-  get :search, :to=>"home#search"
-  get :commands, :to=>"home#commands"
+  resources :users, :only=>[:show]
+  
+  scope :controller=>"home" do
+    get :search
+    get :commands
+    get :status
+  end
   
   # Plurk oauth
   get "sign_in" => "sessions#sign_in"

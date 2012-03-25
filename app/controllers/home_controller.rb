@@ -5,6 +5,10 @@ class HomeController < ApplicationController
     @recent_updated = Category.where("created_at!=updated_at").order('updated_at desc').first(5)
   end
   
+  def status
+    render :json=>SmallDo.get_own_profile
+  end
+  
   def search
     if params[:q].present?
       @q = params[:q]

@@ -24,13 +24,21 @@ class SessionsController < ApplicationController
     @request_token = session[:request_token]
     access_token = @request_token.get_access_token(:oauth_verifier => params[:oauth_verifier])
     own_profile = JSON.parse(access_token.post('/APP/Profile/getOwnProfile').body)
+    if own_profile["error_text"]
+      flash["error"] = "噗浪出了點問題，暫時無法登入"
+      redirect_to root_url
+      return
+    end
     user_info = own_profile["user_info"]
     
     # New an user if the user is not found in database
     unless user = User.find_by_plurk_id(user_info["id"])
       user = User.new
       user.plurk_id = user_info["id"]
+      user.nick_name = user_info["nick_name"]
     end
+    user.oauth_token = JSON.dump(access_tokdn[:oauth_token])
+    user.oauth_token_secret = JSON.dump(access_tokdn[:oauth_token_secret])
     user.user_info = JSON.dump(user_info)
 
     if user.save
@@ -41,6 +49,8 @@ class SessionsController < ApplicationController
     
     redirect_to root_url
   rescue => e
+    p e
+    p e.backtrace
     redirect_to sign_in_url
   end
 end

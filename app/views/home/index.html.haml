@@ -29,7 +29,11 @@
       .row
         .span8
           %p= render "share/facebook_like_button"
-  .span3= render "share/plurk_widget"
+  .span3
+    %p
+      健康狀態：
+      %span#status
+    = render "share/plurk_widget"
 .row
   .span6
     %h2 新主題
@@ -39,7 +43,23 @@
     %h2 近期更新
     - @recent_updated.each do |c|
       .row= render :partial=>"categories/short_category", :object=>c
-= render "share/facebook_script"
+/= render "share/facebook_script"
 /
   :javascript
     $('#coming-soon').tooltip({title:"即將推出", placement:"left"})
+:javascript
+  request = $.ajax({
+    url:"/status",
+    dataType: "json",
+    beforeSend: function(xhr){
+      $('#status').html('<img alt="Loading..." src="/assets/loader.gif" />');
+    }
+  });
+
+  request.done(function(msg){
+    if(msg.error_text){
+      $('#status').html('<span class="label label-important">噗浪掛了：'+msg.error_text+'</span>');
+    }else{
+      $('#status').html('<span class="label label-success">小兜蟲沒問題！</span>');
+    }
+  });

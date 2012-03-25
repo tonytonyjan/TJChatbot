@@ -1,7 +1,13 @@
 class User < ActiveRecord::Base
-  attr_protected :plurk_id, :user_info
+  attr_protected :plurk_id, :user_info, :nick_name, :access_token
   attr_reader :info
   after_initialize :init
+  
+  validates :plurk_id, :user_info, :nick_name, :access_token, :presence=>true
+  
+  def to_param
+    plurk_id
+  end
   
   # :size: should be one of (small|medium|big)
   def avatar size="small"

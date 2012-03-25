@@ -1,0 +1,1 @@
+SmallDo = TJP::TJPlurker. new("tPncMPx4HhTx", "sck0hH0nAD01E4zwZguJzlqhjtEYvpc0", "ZIgBrLbuCmAg", "vJ46i3HMLAksGorprm4IeckWRwHI3dVJ")

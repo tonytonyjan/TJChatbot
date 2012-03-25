@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def signed_in?
-    session[:plurk_id]
+    current_user
   end
   
 end
