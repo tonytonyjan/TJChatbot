@@ -43,7 +43,7 @@
     %h2 近期更新
     - @recent_updated.each do |c|
       .row= render :partial=>"categories/short_category", :object=>c
-/= render "share/facebook_script"
+= render "share/facebook_script"
 /
   :javascript
     $('#coming-soon').tooltip({title:"即將推出", placement:"left"})
