@@ -1,5 +1,6 @@
 # encoding: utf-8
 class UsersController < ApplicationController
+  before_filter :verify_user, :only=>:new_category
   def show
     unless @user = User.find_by_nick_name(params[:id])
       begin
@@ -17,5 +18,16 @@ class UsersController < ApplicationController
         redirect_to user_path(current_user)
       end
     end
+    @categories = @user.categories.order("id desc")
+  end
+  
+  def new_category
+    @user = User.find_by_nick_name(params[:user_id])
+    @category = @user.categories.new
+    3.times{
+      @category.patterns.new
+      @category.responses.new
+    }
+    render "categories/new"
   end
 end

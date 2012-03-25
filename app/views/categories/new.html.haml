@@ -1,5 +1,12 @@
 .page-header
-  %h1 新增主題
+  - if action_name=="new_category"
+    %h1
+      = "新增 #{@user.info["display_name"]} 的主題"
+      %small= "讓小兜蟲只對 #{@user.info["display_name"]} 回應"
+  - else
+    %h1
+      新增全域主題
+      %small= "讓小兜蟲對所有看到的噗做回應"
 .row
   .span12
-    = render "form"
+    = render "categories/form"

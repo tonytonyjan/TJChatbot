@@ -48,7 +48,8 @@ class SessionsController < ApplicationController
       flash[:error] ="登入失敗，無法建立資料，請洽管理員"
     end
     
-    redirect_to root_url
+    redirect_to session[:sign_in_referer] ? session[:sign_in_referer] : root_url
+    session[:sign_in_referer] = nil
   rescue => e
     p e
     puts e.backtrace

@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
         end
       }
     else
+      session[:sign_in_referer] = request.referer
       redirect_to sign_in_path
     end
   end

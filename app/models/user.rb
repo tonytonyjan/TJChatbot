@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_protected :plurk_id, :user_info, :nick_name, :access_token
-  
   validates :plurk_id, :user_info, :nick_name, :presence=>true
+  has_many :categories
   
   def to_param
     nick_name

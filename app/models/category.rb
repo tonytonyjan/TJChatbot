@@ -2,6 +2,8 @@
 class Category < ActiveRecord::Base
   has_many :patterns, :dependent=>:destroy
   has_many :responses, :dependent=>:destroy
+  belongs_to :user
+  
   accepts_nested_attributes_for :patterns, :responses, :reject_if=>proc { |attributes| attributes[:content].blank? }, :allow_destroy=>true
   
   validates :name, :presence=>true, :uniqueness=>true

@@ -5,7 +5,11 @@
       %small= time_ago_in_words(short_category.updated_at, true)
       /= link_to "刪除", short_category, :method=>:delete, :class=>"btn btn-danger pull-right", :confirm=>"你知道你在做什麼？"
       = link_to "編輯", edit_category_path(short_category), :class=>"btn btn-large pull-right"
-      
+    - if short_category.user
+      =link_to  user_path(short_category.user.info["nick_name"]) do
+        %span.label.label-important= short_category.user.info["display_name"] 
+    - else
+      %span.label.label-success 全域
     .row
       .span2
         %h3 聽見

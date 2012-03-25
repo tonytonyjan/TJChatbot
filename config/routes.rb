@@ -2,7 +2,11 @@ Chatbot::Application.routes.draw do
   resources :responses
   resources :patterns
   resources :categories
-  resources :users, :only=>[:show]
+  get "category/new_personal", :to=>"categories#new_personal", :as=>"new_personal_category"
+  
+  resources :users, :only=>[:show] do
+    get "new_category"
+  end
   
   scope :controller=>"home" do
     get :search

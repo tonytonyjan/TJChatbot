@@ -4,6 +4,7 @@
       - @category.errors.full_messages.each do |msg|
         %li= msg
 = form_for @category do |f|
+  = f.hidden_field(:user_id) if action_name == "new_category"
   .row
     .span8
       .well
@@ -41,7 +42,7 @@
             %li
               %span.new-field-btn.label.label-success + 新增
     .well.span3
-      = render "regex_tip"
+      = render "categories/regex_tip"
   = f.button "提交", :class=>"btn btn-large btn-primary"
   - if action_name=="edit"
     = f.button "復原", :type=>"reset" , :class=>"btn btn-large"

@@ -7,10 +7,6 @@
         = @user.info["display_name"]
         %small= @user.info["full_name"]
       %p= @user.info["about"]
+      %p= link_to "新增主題", user_new_category_path(@user), :class=>"btn btn-danger btn-large coming-soon"
 
-.row
-  .offset4.span4
-    %h1 即將推出！敬請期待！
-      
-      
-  
+= render "categories/two_columns_categoryes"
