@@ -1,12 +1,14 @@
 class User < ActiveRecord::Base
   attr_protected :plurk_id, :user_info, :nick_name, :access_token
-  attr_reader :info
-  after_initialize :init
   
-  validates :plurk_id, :user_info, :nick_name, :access_token, :presence=>true
+  validates :plurk_id, :user_info, :nick_name, :presence=>true
   
   def to_param
-    plurk_id
+    nick_name
+  end
+  
+  def info
+    @info ||= JSON.parse(user_info) if user_info
   end
   
   # :size: should be one of (small|medium|big)
@@ -21,10 +23,5 @@ class User < ActiveRecord::Base
     else
       "http://www.plurk.com/static/default_#{size}.gif"
     end
-  end
-  
-  private
-  def init
-    @info = JSON.parse(user_info) if user_info
   end
 end

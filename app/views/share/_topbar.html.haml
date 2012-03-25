@@ -17,5 +17,6 @@
               = current_user.info["display_name"]
               %b.caret
             %ul.dropdown-menu
+              = nav_li "個人詞庫", user_path(current_user)
               = nav_li "登出", sign_out_path
 = render "share/about_modal"

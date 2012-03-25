@@ -1,5 +1,6 @@
 # encoding: utf-8
 class SessionsController < ApplicationController
+  skip_before_filter :verify_user
   
   def sign_in
     unless signed_in?
@@ -35,10 +36,10 @@ class SessionsController < ApplicationController
     unless user = User.find_by_plurk_id(user_info["id"])
       user = User.new
       user.plurk_id = user_info["id"]
-      user.nick_name = user_info["nick_name"]
     end
-    user.oauth_token = JSON.dump(access_tokdn[:oauth_token])
-    user.oauth_token_secret = JSON.dump(access_tokdn[:oauth_token_secret])
+    user.nick_name = user_info["nick_name"] unless user.nick_name 
+    user.oauth_token = JSON.dump(access_token.token)
+    user.oauth_token_secret = JSON.dump(access_token.secret)
     user.user_info = JSON.dump(user_info)
 
     if user.save
@@ -50,7 +51,7 @@ class SessionsController < ApplicationController
     redirect_to root_url
   rescue => e
     p e
-    p e.backtrace
+    puts e.backtrace
     redirect_to sign_in_url
   end
 end

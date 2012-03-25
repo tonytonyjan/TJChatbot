@@ -1,2 +1,16 @@
-.page-header
-  %h1= @user.info["display_name"]
+.hero-unit
+  .row
+    .span3
+      = image_tag @user.avatar("big")
+    .span6
+      %h1
+        = @user.info["display_name"]
+        %small= @user.info["full_name"]
+      %p= @user.info["about"]
+
+.row
+  .offset4.span4
+    %h1 即將推出！敬請期待！
+      
+      
+  
