@@ -1,8 +1,8 @@
 # encoding: utf-8
 class HomeController < ApplicationController
   def index
-    @recent_created = Category.order('created_at desc').first(5)
-    @recent_updated = Category.where("created_at!=updated_at").order('updated_at desc').first(5)
+    @recent_created = Category.where('user_id IS NULL').order('created_at desc').first(5)
+    @recent_updated = Category.where("created_at!=updated_at AND user_id IS NULL").order('updated_at desc').first(5)
   end
   
   def status

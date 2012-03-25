@@ -14,19 +14,19 @@ class UsersController < ApplicationController
       rescue => e
         p e
         puts e.backtrace
-        flash[:error] = "糟糕！出了點問題"
-        redirect_to user_path(current_user)
+        flash[:error] = "查無此人"
+        redirect_to request.referer
       end
     end
-    @categories = @user.categories.order("id desc")
+    @categories = @user.categories.order("id desc") if @user
   end
   
   def new_category
     @user = User.find_by_nick_name(params[:user_id])
     @category = @user.categories.new
     3.times{
-      @category.patterns.new
-      @category.responses.new
+      @category.patterns.build
+      @category.responses.build
     }
     render "categories/new"
   end

@@ -1,12 +1,28 @@
+- content_for :head do
+  :javascript
+    function visit_user(){
+      plurk_id = $('#plurk_id').val();
+      if(plurk_id.length>0) window.location = "/users/"+plurk_id;
+    }
 .hero-unit
   .row
     .span3
       = image_tag @user.avatar("big")
-    .span6
+    .span7
       %h1
         = @user.info["display_name"]
         %small= @user.info["full_name"]
       %p= @user.info["about"]
-      %p= link_to "新增主題", user_new_category_path(@user), :class=>"btn btn-danger btn-large coming-soon"
+      %p
+        - like_title = current_user==@user ? "新增主題" : "幫 #{@user.info["display_name"]} 新增主題"
+        = link_to like_title, user_new_category_path(@user), :class=>"btn btn-danger btn-large"
+        或
+        - placeholder = current_user==@user ? "輸入好友帳號，給他驚喜 XD" : "尋找其他好友"
+        = text_field_tag :plurk_id, nil, :placeholder=>placeholder, :class=>"input-large search-query"
 
 = render "categories/two_columns_categoryes"
+
+:javascript
+  $('#plurk_id').keypress(function(e){
+    if(e.keyCode==13) visit_user();
+  });

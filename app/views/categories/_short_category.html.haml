@@ -15,9 +15,24 @@
         %h3 聽見
         %ol
           - short_category.patterns.each do |p|
-            %li= p.content
+            %li
+              = p.content
+              %p
+                %small
+                  = "#{time_ago_in_words(p.updated_at, true)} ago by"
+                  - if p.last_edit_user_id
+                    =link_to User.find(p.last_edit_user_id).info["display_name"], user_path(User.find(p.last_edit_user_id).info["nick_name"])
+                  - else
+                    Anonymous
       .span3
         %h3 回答
         %ol
           - short_category.responses.each do |p|
             %li= p.content
+            %p
+              %small
+                = "#{time_ago_in_words(p.updated_at, true)} ago by"
+                - if p.last_edit_user_id
+                  =link_to User.find(p.last_edit_user_id).info["display_name"], user_path(User.find(p.last_edit_user_id).info["nick_name"])
+                - else
+                  Anonymous
