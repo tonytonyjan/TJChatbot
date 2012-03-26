@@ -2,5 +2,20 @@
   %h1
     主題總攬
     = link_to "新增主題", new_category_path, :class=>"btn btn-primary btn-large"
+= will_paginate @categories, :renderer => BootstrapPagination::Rails
 /.row= render @categories
 = render "two_columns_categoryes"
+
+/
+  :javascript
+    function scrollalert(){
+      scrolltop=document.body.scrollTop;  
+      scrollheight=document.documentElement.scrollHeight;
+      clientHeight=document.documentElement.clientHeight;
+      scrolloffset=20;
+      console.info(scrolltop + clientHeight, scrollheight);
+      if(scrolltop + clientHeight == scrollheight){
+        
+      }
+    }
+    setInterval(scrollalert, 1500);

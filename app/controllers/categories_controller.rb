@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.where('user_id IS NULL').order("id desc")
+    @categories = Category.where('user_id IS NULL').order("id desc").paginate(:page => params[:page], :per_page => 10)
   end
   
   def new

@@ -11,6 +11,8 @@ gem 'haml'
 gem 'rdiscount'
 gem 'oauth'
 gem 'tjplurker'
+gem 'will_paginate', '~> 3.0'
+gem "will_paginate-bootstrap", "~> 0.2.0"
 
 # Gems used only for assets and not required
 # in production environments by default.

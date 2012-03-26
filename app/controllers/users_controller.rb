@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         redirect_to request.referer
       end
     end
-    @categories = @user.categories.order("id desc") if @user
+    @categories = @user.categories.order("id desc").paginate(:page => params[:page], :per_page => 10) if @user
   end
   
   def new_category

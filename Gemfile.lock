@@ -105,6 +105,9 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    will_paginate (3.0.3)
+    will_paginate-bootstrap (0.2.0)
+      will_paginate (>= 3.0.3)
 
 PLATFORMS
   x86-mingw32
@@ -121,3 +124,5 @@ DEPENDENCIES
   sqlite3
   tjplurker
   uglifier (>= 1.0.3)
+  will_paginate (~> 3.0)
+  will_paginate-bootstrap (~> 0.2.0)

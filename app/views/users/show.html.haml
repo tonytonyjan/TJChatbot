@@ -21,6 +21,7 @@
         = text_field_tag :plurk_id, nil, :placeholder=>placeholder, :class=>"input-large search-query"
       %small 注意：對象與小兜蟲必須為好友才會生效！
 
+= will_paginate @categories, :renderer => BootstrapPagination::Rails
 = render "categories/two_columns_categoryes"
 
 :javascript
