@@ -6,7 +6,7 @@ class Category < ActiveRecord::Base
   
   accepts_nested_attributes_for :patterns, :responses, :reject_if=>proc { |attributes| attributes[:content].blank? }, :allow_destroy=>true
   
-  validates :name, :presence=>true, :uniqueness=>true
+  validates :name, :presence=>true, :uniqueness=>{:scope=>:user_id}
   validate :pattern_fields_cannot_be_blank, :response_fields_cannot_be_blank
   
   def pattern_fields_cannot_be_blank
