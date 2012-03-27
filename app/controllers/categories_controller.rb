@@ -90,9 +90,11 @@ class CategoriesController < ApplicationController
       @category ||= Category.new(params[:category])
     end
     
-    unless current_user.id==@category.user.id || current_user.is_friend_of(@category.user.plurk_id)
-      flash[:error] = "權限不足，他不是你朋友！"
-      redirect_to root_url
+    if @category.private?
+      unless current_user.id==@category.user.id || current_user.is_friend_of(@category.user.plurk_id)
+        flash[:error] = "權限不足，他不是你朋友！"
+        redirect_to root_url
+      end
     end
     
   end
