@@ -1,5 +1,8 @@
 .page-header
-  %h1= @category.name
+  %h1
+    = @category.name
+    - if @category.user
+      %small= "#{@category.user.info["display_name"]} 的主題"
 .row
   .span12
     = render "form"

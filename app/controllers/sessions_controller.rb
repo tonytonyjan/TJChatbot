@@ -38,8 +38,8 @@ class SessionsController < ApplicationController
       user.plurk_id = user_info["id"]
     end
     user.nick_name = user_info["nick_name"] unless user.nick_name 
-    user.oauth_token = JSON.dump(access_token.token)
-    user.oauth_token_secret = JSON.dump(access_token.secret)
+    user.oauth_token = access_token.token
+    user.oauth_token_secret = access_token.secret
     user.user_info = JSON.dump(user_info)
 
     if user.save
@@ -48,7 +48,7 @@ class SessionsController < ApplicationController
       flash[:error] ="登入失敗，無法建立資料，請洽管理員"
     end
     
-    redirect_to session[:sign_in_referer] ? session[:sign_in_referer] : root_url
+    redirect_to session[:sign_in_request_url] ? session[:sign_in_request_url] : root_url
     session[:sign_in_referer] = nil
   rescue => e
     p e

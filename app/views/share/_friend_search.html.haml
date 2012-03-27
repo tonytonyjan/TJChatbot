@@ -1,0 +1,27 @@
+- placeholder = current_user==@user ? "輸入好友帳號，給他驚喜 XD" : "尋找其他好友"
+= text_field_tag :plurk_id, nil, :placeholder=>placeholder, :class=>"input-large search-query"
+
+:javascript
+  function visit_user(){
+    plurk_id = $('#plurk_id').val();
+    if(plurk_id.length>0) window.location = "/users/"+plurk_id;
+  }
+  
+  $('#plurk_id').keypress(function(e){
+    if(e.keyCode==13) visit_user();
+  });
+- if current_user
+  :javascript  
+    request = $.ajax({
+      url: "/get_friends",
+      dataType: "json"
+    });
+  
+    request.done(function(msg){
+      availableTags = $.map(msg, function(value, key){
+        return { label: value.nick_name+' ('+value.full_name+')', value: value.nick_name }
+      });
+      $("#plurk_id").autocomplete({
+        source: availableTags
+      });
+    });

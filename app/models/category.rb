@@ -44,6 +44,14 @@ class Category < ActiveRecord::Base
     return match
   end
   
+  def public?
+    ! user
+  end
+  
+  def private?
+    user
+  end
+  
   def recent_patterns
     patterns.sort_by(&:updated_at).reverse
   end

@@ -10,6 +10,7 @@ Chatbot::Application.routes.draw do
   
   scope :controller=>"home" do
     get :search
+    get :get_friends
     get :commands
     get :status
   end
