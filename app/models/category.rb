@@ -26,7 +26,7 @@ class Category < ActiveRecord::Base
   def self.search_by_pattern query
     cats = []
     Category.all.each{|cat|
-      cats << cat if cat.match?(query)
+      cats << cat if cat.public? && cat.match?(query)
     }
     return cats
   end
