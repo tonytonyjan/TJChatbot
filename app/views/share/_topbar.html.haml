@@ -4,9 +4,12 @@
       = link_to "小兜蟲", root_url, :class=>"brand"
       %ul.nav
         = nav_li "主題總攬", categories_path
-        = nav_li "即時預覽", search_path
         = nav_li "指令集", commands_path
         = nav_li "關於", "#about", "data-toggle"=>"modal"
+      = form_tag search_path, :method=>:get, :class=>"navbar-search pull-left" do
+        = text_field_tag :q, @q, :placeholder=>"搜尋主題", :required=>true, :class=>"search-query", :value=>@q 
+        = hidden_field_tag :p
+        = hidden_field_tag :t
       %ul.nav.pull-right
         - unless signed_in?
           = nav_li "用噗浪登入", sign_in_path

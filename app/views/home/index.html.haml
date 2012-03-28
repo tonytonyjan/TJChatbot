@@ -12,23 +12,20 @@
           = text_field_tag :q, nil, :placeholder=>"尋找主題 ", :class=>"input-xlarge search-query"
           = submit_tag "搜尋", :class=>"btn"
       .row
-        .span4
+        .span3
           %p
             = link_to "瀏覽主題", categories_path, :class=>"btn btn-info btn-large"
             看看別人寫了些什麼
           %p
             = link_to "新增主題", new_category_path, :class=>"btn btn-primary btn-large"
             調教小兜蟲>///<
-          %p
-            = link_to "個人主題", current_user ? user_path(current_user.info["nick_name"]) : sign_in_path, :class=>"btn btn-danger btn-large"
-            讓小兜蟲只針對個人回應
-        .span3
+        .span4
           %p
             = link_to "查閱指令", commands_path, :class=>"btn btn-success btn-large"
             一探小兜蟲的功能
           %p
-            = link_to "即時預覽", search_path, :class=>"btn btn-warning btn-large"
-            預測小兜蟲怎麼回你
+            = link_to "個人主題", current_user ? user_path(current_user.info["nick_name"]) : sign_in_path, :class=>"btn btn-danger btn-large"
+            讓小兜蟲只針對個人回應
           %p
             = render "share/friend_search"
       .row

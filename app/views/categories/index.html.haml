@@ -2,9 +2,10 @@
   %h1
     主題總攬
     = link_to "新增主題", new_category_path, :class=>"btn btn-primary btn-large"
+    %small= "共#{@categories.size}筆搜尋結果" if action_name=="search"
 = will_paginate @categories, :renderer => BootstrapPagination::Rails
 /.row= render @categories
-= render "two_columns_categoryes"
+= render "categories/two_columns_categoryes"
 
 /
   :javascript

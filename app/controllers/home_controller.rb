@@ -8,12 +8,16 @@ class HomeController < ApplicationController
   def search
     if params[:q].present?
       @q = params[:q]
-      @categories = []
-      @categories |= Category.search_by_pattern(params[:q]) if params[:p]
-      @categories |= Category.search_by_title(params[:q]) if params[:t]
+      @t = params[:t] # topic
+      @p = params[:p] # pattern
+      @categories = Category.search(params).paginate(:page => params[:page], :per_page => 10)
     end
+    
     respond_to do |format|
-      format.html{flash[:error] = "你沒有輸入任何東西！" if params[:q] && params[:q].blank?}
+      format.html{
+        flash[:error] = "你沒有輸入任何東西！" if params[:q] && params[:q].blank?
+        render "categories/index"
+      }
       format.json{render :json=>@categories}
     end
   end

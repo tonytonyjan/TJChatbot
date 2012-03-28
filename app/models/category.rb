@@ -19,7 +19,7 @@ class Category < ActiveRecord::Base
   
   # Search categories' title
   def self.search_by_title query
-    Category.all :conditions=>["name LIKE ?", "%"+query+"%"]
+    Category.where(["user_id IS NULL AND name LIKE ?", "%#{query}%"])
   end
   
   # Search categories that can accept the query.
@@ -29,6 +29,15 @@ class Category < ActiveRecord::Base
       cats << cat if cat.match?(query)
     }
     return cats
+  end
+  
+  # opt[:p] for pattern
+  # opt[:t] for title
+  def self.search opt={}
+    ret = []
+    ret |= search_by_title(opt[:q]) if opt[:t]
+    ret |= search_by_pattern(opt[:q]) if opt[:p]
+    return ret
   end
   
   # Check if the given string can be accepted by this category.
