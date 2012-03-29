@@ -10,7 +10,7 @@
       .well
         %h2 溫馨提醒
         :markdown
-          *   新增主題之前，建議先[預覽](/search)是否已經有人開過類似意義的主題了，有則沿用，以免重創主題。
+          *   新增主題之前，建議先搜尋主題看是否已經有人開過類似意義的主題了，有則沿用，以免重創主題。
           
           *   你所做的更動除非系統當機，否則一分鐘內就會生效。
 
@@ -46,7 +46,7 @@
   = f.button "提交", :class=>"btn btn-large btn-primary"
   - if action_name=="edit"
     = f.button "復原", :type=>"reset" , :class=>"btn btn-large"
-    = link_to "刪除", @category, :method=>:delete, :class=>"btn btn-danger pull-right", :confirm=>"你知道你在做什麼？"  
+    = link_to "刪除主題", @category, :method=>:delete, :class=>"btn btn-danger pull-right", :confirm=>"這個按鈕會刪除「整個主題」，你知道你在做什麼？"  
 
 - if action_name=="new"
   :javascript
