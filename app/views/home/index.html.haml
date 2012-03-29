@@ -48,7 +48,9 @@
 = render "share/facebook_script"
 
 :javascript
-  $('.coming-soon').tooltip({title:"即將推出", placement:"left"})
+  //$('.coming-soon').tooltip({title:"即將推出", placement:"left"});
+  $('.new-feature').tooltip({title:"新玩意", placement:"bottom", trigger:"manual"});
+  $('.new-feature').tooltip("show");
 :javascript
   request = $.ajax({
     url:"/status",

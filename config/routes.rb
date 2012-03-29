@@ -13,6 +13,7 @@ Chatbot::Application.routes.draw do
     get :get_friends
     get :commands
     get :status
+    get :discuss
   end
   
   # Plurk oauth
