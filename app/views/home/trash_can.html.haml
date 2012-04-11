@@ -1,5 +1,5 @@
 .page-header
-  = link_to "我的垃圾桶", trash_can_user_path(current_user), :class=>"btn btn-info btn-large pull-right" if current_user
+  = link_to "我的垃圾桶", trash_can_user_path(current_user), :class=>"btn btn-info btn-large pull-right" if current_user && current_user != @user
   %h1 
     = controller_name == "users" ? "#{@user.info['display_name']}的垃圾桶" : "公共垃圾桶"
     %small 這裡放著所有被刪除的主題，可以透過回復讓小兜蟲重新使用這些主題

@@ -75,7 +75,11 @@ class CategoriesController < ApplicationController
     @category.update_attribute :is_active, params[:active]
     
     flash[:success] = @category.is_active ? "成功啟用" : "已丟入垃圾桶"
-    redirect_to @category.is_active ? trash_can_path : categories_path
+    if @category.public?
+      redirect_to @category.is_active ? trash_can_path : categories_path
+    else
+      redirect_to @category.is_active ? trash_can_user_path(@category.user) : user_path(@category.user)
+    end
   end
   
   private
