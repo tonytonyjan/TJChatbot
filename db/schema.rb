@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120411154226) do
+ActiveRecord::Schema.define(:version => 20120411191043) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "user_id"
-    t.boolean  "is_active"
+    t.boolean  "is_active",  :default => true
   end
 
   create_table "patterns", :force => true do |t|
