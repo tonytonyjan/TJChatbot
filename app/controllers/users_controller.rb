@@ -1,8 +1,8 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  before_filter :require_sign_in, :require_exist, :require_friend, :only=>[:show, :new_category]
+  before_filter :require_sign_in, :require_exist, :require_friend, :only=>[:show, :new_category, :trash_can]
   def show
-    @categories = @user.categories.order("id desc").paginate(:page => params[:page], :per_page => 10) if @user
+    @categories = @user.categories.actived.order("id desc").paginate(:page => params[:page], :per_page => 10)
   end
   
   def new_category
@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     render "categories/new"
   end
   
+    
+  def trash_can
+    @user ||= User.find_by_nick_name(params[:id])
+    @categories = @user.categories.unactived.paginate(:page => params[:page], :per_page => 10)
+    render "home/trash_can"
+  end
   
   private
   def require_exist

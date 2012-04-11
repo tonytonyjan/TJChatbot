@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_filter :require_sign_in_if_is_private, :require_friend, :only=>[:create, :edit, :update]
   
   def index
-    @categories = Category.where('user_id IS NULL').order("id desc").paginate(:page => params[:page], :per_page => 10)
+    @categories = Category.actived.public.order("id desc").paginate(:page => params[:page], :per_page => 10)
   end
   
   def new
@@ -68,6 +68,14 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
     redirect_to categories_path
+  end
+  
+  def active
+    @category = Category.find(params[:id])
+    @category.update_attribute :is_active, params[:active]
+    
+    flash[:success] = @category.is_active ? "成功啟用" : "已丟入垃圾桶"
+    redirect_to @category.is_active ? trash_can_path : categories_path
   end
   
   private

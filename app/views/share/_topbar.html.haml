@@ -5,7 +5,8 @@
       %ul.nav
         = nav_li "主題總攬", categories_path
         = nav_li "指令集", commands_path
-        = nav_li "留言板", discuss_path, :class=>"new-feature"
+        = nav_li "留言板", discuss_path
+        = nav_li "垃圾桶", trash_can_path, :class=>"new-feature"
         = nav_li "關於", "#about", "data-toggle"=>"modal"
       = form_tag search_path, :method=>:get, :class=>"navbar-search pull-left" do
         = text_field_tag :q, @q, :placeholder=>"搜尋主題", :required=>true, :class=>"search-query", :value=>@q 
@@ -21,6 +22,7 @@
               = current_user.info["display_name"]
               %b.caret
             %ul.dropdown-menu
-              = nav_li "個人詞庫", user_path(current_user)
+              = nav_li "我的詞庫", user_path(current_user)
+              = nav_li "我的垃圾桶", trash_can_user_path(current_user)
               = nav_li "登出", sign_out_path
 = render "share/about_modal"

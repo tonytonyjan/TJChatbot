@@ -1,8 +1,8 @@
 # encoding: utf-8
 class HomeController < ApplicationController
   def index
-    @recent_created = Category.where('user_id IS NULL').order('created_at desc').first(5)
-    @recent_updated = Category.where("created_at!=updated_at AND user_id IS NULL").order('updated_at desc').first(5)
+    @recent_created = Category.actived.public.order('created_at desc').first(5)
+    @recent_updated = Category.actived.public.where("created_at!=updated_at").order('updated_at desc').first(5)
   end
   
   def search
@@ -22,8 +22,11 @@ class HomeController < ApplicationController
     end
   end
   
-  # For AJAX
+  def trash_can
+    @categories = Category.unactived.public.order("updated_at desc").paginate(:page => params[:page], :per_page => 10)
+  end
   
+  # For AJAX
   def status
     render :json=>SmallDo.get_own_profile
   end
@@ -39,5 +42,6 @@ class HomeController < ApplicationController
     else
       redirect_to sign_in_path
     end
-  end
+  end  
+  
 end

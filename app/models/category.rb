@@ -1,5 +1,9 @@
 # encoding: utf-8
 class Category < ActiveRecord::Base
+  scope :actived, where(:is_active => true)
+  scope :unactived, where(:is_active => false)
+  scope :public, where(:user_id=>nil)
+  
   has_many :patterns, :dependent=>:destroy
   has_many :responses, :dependent=>:destroy
   belongs_to :user

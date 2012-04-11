@@ -1,11 +1,13 @@
 Chatbot::Application.routes.draw do
   resources :responses
   resources :patterns
-  resources :categories
-  get "category/new_personal", :to=>"categories#new_personal", :as=>"new_personal_category"
+  resources :categories do
+    post "active", :on=>:member
+  end
   
   resources :users, :only=>[:show] do
     get "new_category"
+    get "trash_can", :on=>:member
   end
   
   scope :controller=>"home" do
@@ -14,6 +16,7 @@ Chatbot::Application.routes.draw do
     get :commands
     get :status
     get :discuss
+    get :trash_can
   end
   
   # Plurk oauth

@@ -46,7 +46,8 @@
   = f.button "提交", :class=>"btn btn-large btn-primary"
   - if action_name=="edit"
     = f.button "復原", :type=>"reset" , :class=>"btn btn-large"
-    = link_to "刪除主題", @category, :method=>:delete, :class=>"btn btn-danger pull-right", :confirm=>"這個按鈕會刪除「整個主題」，你知道你在做什麼？"  
+    = link_to "重新啟用", active_category_path(@category, :active=>true), :method=>:post, :class=>"btn btn-success btn-large" unless @category.is_active
+    = link_to "丟到垃圾桶", active_category_path(@category, :active=>false), :method=>:post, :class=>"btn btn-danger pull-right", :confirm=>"這個按鈕丟掉該主題，被丟到垃圾桶的主題仍可去垃圾桶復原，確定要丟掉？" if @category.is_active
 
 - if action_name=="new"
   :javascript
